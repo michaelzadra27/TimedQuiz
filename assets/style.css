@@ -63,11 +63,11 @@ body{
 }
 
 .correct {
-    background-color: green;
+    color: green;
 }
 
 .wrong {
-    background-color: red;
+    color: red;
 }
 /* .questionHeader{
     background-color:yellow;
