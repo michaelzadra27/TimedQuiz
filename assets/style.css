@@ -62,13 +62,13 @@ body{
     display:none;
 }
 
-.correct {
-    color: green;
+/* .correct {
+   color: green;
 }
 
 .wrong {
     color: red;
-}
+} */
 /* .questionHeader{
     background-color:yellow;
     display:flex;

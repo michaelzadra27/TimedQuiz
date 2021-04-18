@@ -5,7 +5,7 @@ var clock = document.getElementById('time')
 var scorecard = document.getElementById('score')
 var leaderBElement = document.getElementById('leaderB-btn')
 var restartBtnEl = document.getElementById('restart-btn')
-const endScreenElement = document.getElementById("endScreen")
+const endScreenElement = document.getElementById("endGame")
 const finishButton = document.getElementById('endscreen-btn')
 //var score = 0
 //const choiceA = document.getElementById('A')
@@ -24,29 +24,13 @@ nextButton.addEventListener('click', () => {
 })
 
 function countdown() {
-    var timeLeft = 60;
-    
 timeInterval = setInterval(function () {
-   // var clock = document.getElementById('time')
-   
-    
-    // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      clock.textContent = timeLeft;
-      // Decrement `timeLeft` by 1
-      timeLeft--;
-    } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      clock.textContent = timeLeft + ' second remaining';
-      timeLeft--;
-    } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      clock.textContent = '';
-      // Use `clearInterval()` to stop the timer
+ timeLeft--;
+ clock.textContent = timeLeft
+ if (timeLeft == 0) {
+
+//endgame Function
       clearInterval(timeInterval);
-      
-      
     }
   }, 1000);
 }
@@ -54,57 +38,45 @@ timeInterval = setInterval(function () {
 function selectAnswer(e){
   const pickedButton = e.target
   const correct = pickedButton.dataset.correct
-  setStatusClass(document.body, correct)
-  Array.from(answerButtonsElement.children).forEach(button =>{
-    setStatusClass(button, button.dataset.correct)
-  })
+  // setStatusClass(document.body, correct)
+  // Array.from(answerButtonsElement.children).forEach(button =>{
+  //   setStatusClass(button, button.dataset.correct)
+  // })
   if (randomQuestions.length > currentQuestionIndex +1){
   nextButton.classList.remove('hide')
   } else {
     //startButton.innerHTML = "Restart"
     //startButton.classList.remove('hide')
-    leaderBElement.classList.remove('hide')
-    restartBtnEl.classList.remove('hide')
-    restartBtnEl.addEventListener('click', reloadPage)
-  }
+    finishGame();
+    
+
+    }
 }
 
-// finishButton.addEventListener("click", endGame)
-// function endGame() {
-//     finishButton.classList.add("hide")
-//     questionElement.classList.add("hide")
-//     answerButtonsElement.classList.add("hide")
-//     endScreenElement.classList.remove("hide")
-//     //stop timer, enter time value to scoreboard
-//     //initials need to go to scoreboard
-//         clearInterval(timerInterval);
-//     finalScore.innerText = (secondsLeft)
-// }
+function finishGame(){
+  leaderBElement.classList.remove('hide')
+    restartBtnEl.classList.remove('hide')
+    restartBtnEl.addEventListener('click', reloadPage)
+    endScreenElement.classList.remove('hide')
+    questionContainer.classList.add('hide')
+}
 
 function reloadPage(){
   window.location.reload();
 }
 
-function setStatusClass(element, correct){
-  scorecard = document.getElementById('score')
-  score = 0
-  
-  clearStatusClass(element)
-  if(correct){
-    element.classList.add('correct')
-    
-  }
-  else {
-    element.classList.add('wrong')
-    console.log("Hello")
-    timeLeft -5
-  }
-}
+// function setStatusClass(element, correct){
 
-// function incrementScore(){
-//   points +10
-//   score = points
-//   scorecard.innerHTML = points
+//   clearStatusClass(element)
+//   if(correct){
+//     element.classList.add('correct')
+    
+//   }else {
+//     element.classList.add('wrong')
+//     console.log("Hello")
+    
+//   }
+// }
 
 // }
 
@@ -236,13 +208,24 @@ function getQuestion(question){
     button.innerText = answer.text
     button.classList.add('btn')
     if (answer.correct){
-      button.dataset.correct = answer.correct
-    }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
-  })
+      button.addEventListener('click', function(e){
+        selectAnswer(e)
+      })
+    } else{
+    button.addEventListener('click', function(e){
+      selectAnswer(e)
+      timeLeft -= 5;
+      
 
+    })   
+    
+  }
+  //  button.dataset.correct = answer.correct
+  //  button.dataset.wrong = answer.wrong
+  answerButtonsElement.appendChild(button)
+})
 }
+
 
 function clearButtons() {
   clearStatusClass(document.body)

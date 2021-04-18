@@ -29,13 +29,17 @@
     <div class="controls">
       <button id="start-btn" class=" start-btn btn">Start</button>
       <button id="next-btn" class="next-btn btn hide">Next</button>
-      <button id="leaderB-btn" class="leaderB-btn btn hide">See Scores</button>
-      <button id="restart-btn" class="restart-btn btn hide">Restart</button>
-      <div id ="endScreen" class ="endScreen-btn hide">
-        You've Won!
-
-
-
+      <div id="endGame" class="hide">
+        <p>
+            Good Job!
+        </p>
+        <p> Score: <span id="score"> </span></p>
+        <p>
+            Enter your intials: <input id="initials" type="text">
+        </p>
+        <button id="leaderB-btn" class="leaderB-btn btn hide">See Scores</button>
+        <button id="restart-btn" class="restart-btn btn hide">Restart</button>
+        
       </div>
 
     </div>
