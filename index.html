@@ -3,63 +3,70 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>jQuery DOM elements</title>
+  <title>Quiz!</title>
   <link rel="stylesheet" href="./assets/style.css" />
 
 
 </head>
 
 <body>
+  <header id="header" >
+    <h1>Welcome to the MLB Quiz!</h1>
+    <h2>This will test some of your baseball knowledge</h2>
+
+
+  </header>
   <div class="container">
     <div id="quizHeader">
-      
-      <div id ="time"></div>
+
+      <div id="time"></div>
       <div id="score"></div>
     </div>
     <div id="questionBox" class="hide">
       <div id="question"></div>
       <div id="answerBtn" class="buttonGrid">
         <button class="choice" id="A"></button>
-        <button class="choice" id ="B"></button>
+        <button class="choice" id="B"></button>
         <button class="choice" id="C"></button>
-        <button class="choice" id ="D"></button>
+        <button class="choice" id="D"></button>
 
       </div>
     </div>
-    <div class="controls">
+    <div class="mainGrid">
       <button id="start-btn" class=" start-btn btn">Start</button>
       <button id="next-btn" class="next-btn btn hide">Next</button>
       <div id="endGame" class="hide">
         <p>
-            Good Job!
+          Good Job!
         </p>
         <p id="finishedScore"> Score: <span id="finshedscore"> </span></p>
         <p>
-            Enter your intials: <input id="initials" type="text">
+          Enter your intials: <input id="initials" type="text">
         </p>
         <button id="leaderB-btn" class="leaderB-btn btn hide">Submit to see your previous score</button>
-        
-        
+
+
       </div>
 
-      <div id="leaderboard" class= 'hide'>
-        <h3 id ="lastScore"></h3>
-          <ul id="leaderlist" class= 'leaderlist'>
-            <li id ="postHere">Top Score</li>
+      <div id="leaderboard" class='hide'>
+        <h3 id="lastScore"></h3>
+        <ul id="leaderlist" class='leaderlist'>
+          <li id="postHere">Top Score</li>
 
-          </ul>
-          <button id="restart-btn" class="restart-btn btn hide">Restart</button>
+        </ul>
+        <button id="restart-btn" class="restart-btn btn hide">Restart</button>
 
 
       </div>
 
     </div>
+  </div>
 
 
 
 
 
-    
 
-    <script src="./assets/script.js"></script>
+
+  <script src="./assets/script.js"></script>
 </body>

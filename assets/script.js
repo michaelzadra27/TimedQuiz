@@ -12,12 +12,13 @@ var getScore = document.getElementById('postHere')
 var yourScore = document.getElementById('finishedScore')
 var initials = document.getElementById('initials')
 var lastPlayer = document.getElementById('lastScore')
+var headerEl=document.getElementById('header')
 //var score = 0
 //const choiceA = document.getElementById('A')
 //const choiceB = document.getElementById('B')
 //const choiceC = document.getElementById('C')
 //const choiceD = document.getElementById('D')
-var questionElement = document.getElementById('question')
+var questionE = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answerBtn')
 var timeLeft = 60
 
@@ -231,6 +232,7 @@ function startGame() {
   start.classList.add('hide')
   leaderBElement.classList.add('hide')
   questionContainer.classList.remove('hide')
+  headerEl.classList.add('hide')
   randomQuestions = questions.sort(() => Math.random() -.5)
   currentQuestionIndex = 0
   //renderQuestion()
@@ -247,7 +249,7 @@ function setNextQuestion(){
 }
 
 function getQuestion(question){
-  questionElement.innerHTML = question.question
+  questionE.innerHTML = question.question
   question.answers.forEach(answer => {
     const button = document.createElement('button')
     button.innerText = answer.text
