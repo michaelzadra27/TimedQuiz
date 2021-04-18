@@ -1,5 +1,5 @@
-var startButton = document.getElementById("start-btn")
-var nextButton = document.getElementById("next-btn")
+var start = document.getElementById("start-btn")
+var advance = document.getElementById("next-btn")
 var questionContainer = document.getElementById('questionBox')
 var clock = document.getElementById('time')
 var scorecard = document.getElementById('score')
@@ -9,6 +9,9 @@ const endScreenElement = document.getElementById("endGame")
 const finishButton = document.getElementById('endscreen-btn')
 var showScores = document.getElementById('leaderboard')
 var getScore = document.getElementById('postHere')
+var yourScore = document.getElementById('finishedScore')
+var initials = document.getElementById('initials')
+var lastPlayer = document.getElementById('lastScore')
 //var score = 0
 //const choiceA = document.getElementById('A')
 //const choiceB = document.getElementById('B')
@@ -18,13 +21,19 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answerBtn')
 var timeLeft = 60
 
+
+
+
 let randomQuestions, currentQuestionIndex
 
 const finalScore = timeLeft
 
+//console.log(yourScore)
+//console.log(leaderBElement)
+
 
 //increments to get to next random question
-nextButton.addEventListener('click', () => {
+advance.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
@@ -56,18 +65,15 @@ timeInterval = setInterval(function () {
 
 
 //listens to what button is clicked
-function selectAnswer(e){
-  const pickedButton = e.target
+function selectAnswer(choice){
+  const pickedButton = choice.target
   const correct = pickedButton.dataset.correct
-  // setStatusClass(document.body, correct)
-  // Array.from(answerButtonsElement.children).forEach(button =>{
-  //   setStatusClass(button, button.dataset.correct)
-  // })
+ 
   if (randomQuestions.length > currentQuestionIndex +1){
-  nextButton.classList.remove('hide')
+  advance.classList.remove('hide')
   } else {
-    //startButton.innerHTML = "Restart"
-    //startButton.classList.remove('hide')
+    //start.innerHTML = "Restart"
+    //start.classList.remove('hide')
     finishGame();
     
 
@@ -77,11 +83,16 @@ function selectAnswer(e){
 
 //adds and removes classes on the submit button to only show leaderboard
 function seeScores() {
+  var getInitials = initials.value
+
   showScores.classList.remove('hide')
   leaderBElement.classList.add('hide')
   restartBtnEl.classList.remove('hide')
   endScreenElement.classList.add('hide')
   getScore.innerHTML= (timeLeft)
+  lastPlayer.innerHTML = (getInitials)
+  localStorage.setItem("score", timeLeft )
+  //yourScore.innerHTML = (timeLeft)
   
 
 }
@@ -95,7 +106,11 @@ function finishGame(){
     endScreenElement.classList.remove('hide')
     questionContainer.classList.add('hide')
     clearInterval(timeInterval);
+    yourScore.innerHTML = "Your Score: " + (timeLeft)
+    console.log(yourScore)
+
     //console.log(finalScore)
+   
 }
 
 
@@ -103,22 +118,6 @@ function finishGame(){
 function reloadPage(){
   window.location.reload();
 }
-
-// function setStatusClass(element, correct){
-
-//   clearStatusClass(element)
-//   if(correct){
-//     element.classList.add('correct')
-    
-//   }else {
-//     element.classList.add('wrong')
-//     console.log("Hello")
-    
-//   }
-// }
-
-// }
-
 
 
 function clearStatusClass(element) {
@@ -229,7 +228,7 @@ const questions =[
 
 function startGame() {
   //console.log("hello")
-  startButton.classList.add('hide')
+  start.classList.add('hide')
   leaderBElement.classList.add('hide')
   questionContainer.classList.remove('hide')
   randomQuestions = questions.sort(() => Math.random() -.5)
@@ -237,6 +236,7 @@ function startGame() {
   //renderQuestion()
   setNextQuestion()
   countdown();
+ 
   
 }
 
@@ -276,7 +276,7 @@ function getQuestion(question){
 //removes previous question buttons when moving to the next question
 function clearButtons() {
   clearStatusClass(document.body)
-  nextButton.classList.add('hide')
+  advance.classList.add('hide')
   while (answerButtonsElement.firstChild){
     answerButtonsElement.removeChild
     (answerButtonsElement.firstChild)
@@ -285,6 +285,6 @@ function clearButtons() {
 
 
 
-startButton.addEventListener("click", startGame)
+start.addEventListener("click", startGame)
 
 

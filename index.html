@@ -13,8 +13,8 @@
   <div class="container">
     <div id="quizHeader">
       
-      <div id ="time">0</div>
-      <div id="score">0</div>
+      <div id ="time"></div>
+      <div id="score"></div>
     </div>
     <div id="questionBox" class="hide">
       <div id="question"></div>
@@ -33,17 +33,17 @@
         <p>
             Good Job!
         </p>
-        <p> Score: <span id="score"> </span></p>
+        <p id="finishedScore"> Score: <span id="finshedscore"> </span></p>
         <p>
             Enter your intials: <input id="initials" type="text">
         </p>
-        <button id="leaderB-btn" class="leaderB-btn btn hide">Submit to see leaderboard</button>
+        <button id="leaderB-btn" class="leaderB-btn btn hide">Submit to see your previous score</button>
         
         
       </div>
 
       <div id="leaderboard" class= 'hide'>
-        <h3>High Scores</h3>
+        <h3 id ="lastScore"></h3>
           <ul id="leaderlist" class= 'leaderlist'>
             <li id ="postHere">Top Score</li>
 
