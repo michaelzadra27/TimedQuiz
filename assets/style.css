@@ -27,11 +27,14 @@ body{
 }
 
 h1 {
-    color:blue
+    color:rgb(16, 16, 189);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 h2 {
-    color:rgb(66, 65, 65)
+    color:rgb(102, 102, 102);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: oblique;
 }
 
 .container {
