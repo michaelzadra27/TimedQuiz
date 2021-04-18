@@ -7,6 +7,8 @@ var leaderBElement = document.getElementById('leaderB-btn')
 var restartBtnEl = document.getElementById('restart-btn')
 const endScreenElement = document.getElementById("endGame")
 const finishButton = document.getElementById('endscreen-btn')
+var showScores = document.getElementById('leaderboard')
+var getScore = document.getElementById('postHere')
 //var score = 0
 //const choiceA = document.getElementById('A')
 //const choiceB = document.getElementById('B')
@@ -18,11 +20,20 @@ var timeLeft = 60
 
 let randomQuestions, currentQuestionIndex
 
+const finalScore = timeLeft
+
+
+//increments to get to next random question
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++
   setNextQuestion()
 })
 
+//Takes you to the score display when the game is over
+leaderBElement.addEventListener('click', seeScores)
+
+
+//Controls the clock
 function countdown() {
 timeInterval = setInterval(function () {
  timeLeft--;
@@ -35,6 +46,16 @@ timeInterval = setInterval(function () {
   }, 1000);
 }
 
+
+
+// function stopTime(){
+//   clearInterval(timeInterval);
+  
+
+// }
+
+
+//listens to what button is clicked
 function selectAnswer(e){
   const pickedButton = e.target
   const correct = pickedButton.dataset.correct
@@ -53,14 +74,32 @@ function selectAnswer(e){
     }
 }
 
-function finishGame(){
-  leaderBElement.classList.remove('hide')
-    restartBtnEl.classList.remove('hide')
-    restartBtnEl.addEventListener('click', reloadPage)
-    endScreenElement.classList.remove('hide')
-    questionContainer.classList.add('hide')
+
+//adds and removes classes on the submit button to only show leaderboard
+function seeScores() {
+  showScores.classList.remove('hide')
+  leaderBElement.classList.add('hide')
+  restartBtnEl.classList.remove('hide')
+  endScreenElement.classList.add('hide')
+  getScore.innerHTML= (timeLeft)
+  
+
 }
 
+//adds and removes classes at the end of the game and shows the endgame page
+function finishGame(){
+  
+    leaderBElement.classList.remove('hide')
+    restartBtnEl.classList.remove('hide')
+    restartBtnEl.addEventListener('click', startGame)
+    endScreenElement.classList.remove('hide')
+    questionContainer.classList.add('hide')
+    clearInterval(timeInterval);
+    //console.log(finalScore)
+}
+
+
+//reloads the pages on the restart button
 function reloadPage(){
   window.location.reload();
 }
@@ -79,6 +118,8 @@ function reloadPage(){
 // }
 
 // }
+
+
 
 function clearStatusClass(element) {
   element.classList.remove('correct')
@@ -182,6 +223,10 @@ const questions =[
 //Other way to call questions
 
 
+
+
+//
+
 function startGame() {
   //console.log("hello")
   startButton.classList.add('hide')
@@ -227,6 +272,8 @@ function getQuestion(question){
 }
 
 
+
+//removes previous question buttons when moving to the next question
 function clearButtons() {
   clearStatusClass(document.body)
   nextButton.classList.add('hide')
