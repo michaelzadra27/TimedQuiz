@@ -25,7 +25,7 @@ var timeLeft = 60
 
 
 
-let randomQuestions, currentQuestionIndex
+let randomQuestions, active
 
 const finalScore = timeLeft
 
@@ -35,7 +35,7 @@ const finalScore = timeLeft
 
 //increments to get to next random question
 advance.addEventListener('click', () => {
-  currentQuestionIndex++
+  active++
   setNextQuestion()
 })
 
@@ -70,7 +70,7 @@ function selectAnswer(choice){
   const pickedButton = choice.target
   const correct = pickedButton.dataset.correct
  
-  if (randomQuestions.length > currentQuestionIndex +1){
+  if (randomQuestions.length > active +1){
   advance.classList.remove('hide')
   } else {
     //start.innerHTML = "Restart"
@@ -234,7 +234,7 @@ function startGame() {
   questionContainer.classList.remove('hide')
   headerEl.classList.add('hide')
   randomQuestions = questions.sort(() => Math.random() -.5)
-  currentQuestionIndex = 0
+  active = 0
   //renderQuestion()
   setNextQuestion()
   countdown();
@@ -243,8 +243,8 @@ function startGame() {
 }
 
 function setNextQuestion(){
-  clearButtons();
-  getQuestion(randomQuestions[currentQuestionIndex])
+  deleteBtns();
+  getQuestion(randomQuestions[active])
   
 }
 
@@ -276,7 +276,7 @@ function getQuestion(question){
 
 
 //removes previous question buttons when moving to the next question
-function clearButtons() {
+function deleteBtns() {
   clearStatusClass(document.body)
   advance.classList.add('hide')
   while (answerButtonsElement.firstChild){
