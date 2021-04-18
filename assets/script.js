@@ -3,6 +3,7 @@ var nextButton = document.getElementById("next-btn")
 var questionContainer = document.getElementById('questionBox')
 var clock = document.getElementById('time')
 var scorecard = document.getElementById('score')
+//var score = 0
 //const choiceA = document.getElementById('A')
 //const choiceB = document.getElementById('B')
 //const choiceC = document.getElementById('C')
@@ -55,21 +56,33 @@ function selectAnswer(e){
   if (shuffledQuestions.length > currentQuestionIndex +1){
   nextButton.classList.remove('hide')
   } else {
-    startButton.innertext = "Restart"
+    startButton.innerHTML = "Restart"
     startButton.classList.remove('hide')
   }
 
 }
 
 function setStatusClass(element, correct){
+  scorecard = document.getElementById('score')
+  score = 0
+  
   clearStatusClass(element)
   if(correct){
     element.classList.add('correct')
+    score++
+    console.log(typeof score)
   }
   else {
     element.classList.add('wrong')
 
   }
+}
+
+function incrementScore(){
+  points +10
+  score = points
+  scorecard.innerHTML = points
+
 }
 
 function clearStatusClass(element) {
