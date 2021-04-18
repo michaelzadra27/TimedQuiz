@@ -91,7 +91,7 @@ function finishGame(){
   
     leaderBElement.classList.remove('hide')
     restartBtnEl.classList.remove('hide')
-    restartBtnEl.addEventListener('click', startGame)
+    restartBtnEl.addEventListener('click', reloadPage)
     endScreenElement.classList.remove('hide')
     questionContainer.classList.add('hide')
     clearInterval(timeInterval);

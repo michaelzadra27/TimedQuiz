@@ -6,8 +6,8 @@
 
 ## Screenshot
 
-![screenshot](./assets/images/screenshotportfolio.JPG)
+<!-- ![screenshot](./assets/images/screenshotportfolio.JPG)
     
-[Link to deployed webpage](https://michaelzadra27.github.io/Portfolio/)
+[Link to deployed webpage](https://michaelzadra27.github.io/Portfolio/) -->
 
 ## Credits
